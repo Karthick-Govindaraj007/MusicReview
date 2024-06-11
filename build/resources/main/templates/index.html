@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARTIST EVALUATOR</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #E6E6FA; /* Light purple background */
+            color: #333;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #816a9f; /* Light purple header */
+        }
+        .linktree {
+            display: flex;
+            gap: 10px;
+        }
+        .linktree a {
+            text-decoration: none;
+            color: #fff;
+            background-color: #9370DB; /* Purple button color */
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .linktree a:hover {
+            background-color: #7B68EE; /* Darker purple on hover */
+        }
+        .search-bar {
+            display: flex;
+            justify-content: center;
+            margin: 50px 20px;
+        }
+        .search-bar input[type="text"] {
+            padding: 10px;
+            width: 300px;
+            border: 2px solid #9370DB;
+            border-radius: 5px;
+            outline: none;
+            margin-right: 10px;
+        }
+        .search-bar input[type="submit"] {
+            padding: 10px 15px;
+            border: none;
+            background-color: #9370DB;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .search-bar input[type="submit"]:hover {
+            background-color: #7B68EE;
+        }
+        .directions-box {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #9370DB;
+            color: #fff;
+            border-radius: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1 style="color: white;">ARTIST EVALUATOR</h1>
+    <div class="linktree">
+        <a href="/about-us">ABOUT US</a>
+        <a href="/future-updates">FUTURE OF THE SITE</a>
+    </div>
+</header>
+
+<div class="search-bar">
+    <form id="searchForm">
+        <input type="text" id="artist" placeholder="Search for an artist..." required>
+        <input type="submit" value="Search">
+    </form>
+</div>
+
+<div class="directions-box">
+    <h2>How to Use the Artist Evaluator</h2>
+    <p>Welcome to the Artist Evaluator! To find detailed information about your favorite artists, simply enter the artist's name in the search bar above and click "Search". You will be redirected to a page displaying various details about the artist, including their picture, top songs, top album, number of streams, number of listeners, and similar artists. Enjoy exploring! (by Jonathan Lee and Karthick Govindaraj)</p>
+</div>
+
+<script>
+    document.getElementById('searchForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        var artist = document.getElementById('artist').value;  // Finds artist
+        fetch(`https://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=${encodeURIComponent(artist)}&api_key=ef46db5e1694b83d5b6af6a580cc047b&format=json`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.artist) {
+                    localStorage.setItem('artistData', JSON.stringify(data)); // Store the artist data in localStorage
+                    window.location.href = '/search-results'; // Redirect to result.html
+                } else {
+                    alert('Artist not found. Please try again.'); // Error if artist is not found
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching artist data:', error);
+                alert('Failed to fetch artist data. Please try again later.');
+            });
+    });
+</script>
+
+</body>
+</html>
