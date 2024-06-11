@@ -75,8 +75,8 @@
 <header>
     <h1 style="color: white;">ARTIST EVALUATOR</h1>
     <div class="linktree">
-        <a href="page1.html">ABOUT US</a>
-        <a href="page2.html">FUTURE OF THE SITE</a>
+        <a href="/about-us">ABOUT US</a>
+        <a href="/future-updates">FUTURE OF THE SITE</a>
     </div>
 </header>
 
@@ -101,7 +101,7 @@
             .then(data => {
                 if (data.artist) {
                     localStorage.setItem('artistData', JSON.stringify(data)); // Store the artist data in localStorage
-                    window.location.href = 'searchresults.html'; // Redirect to result.html
+                    window.location.href = '/search-results'; // Redirect to result.html
                 } else {
                     alert('Artist not found. Please try again.'); // Error if artist is not found
                 }

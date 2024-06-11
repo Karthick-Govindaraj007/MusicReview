@@ -91,9 +91,9 @@
 <header>
     <h1 style="color: white;">ARTIST EVALUATOR - RESULTS</h1>
     <div class="linktree">
-        <a href="index.html">HOME</a>
-        <a href="page1.html">ABOUT US</a>
-        <a href="page2.html">FUTURE OF THE SITE</a>
+        <a href="/index">HOME</a>
+        <a href="/about-us">ABOUT US</a>
+        <a href="/future-updates">FUTURE OF THE SITE</a>
     </div>
 </header>
 
@@ -174,7 +174,7 @@
                         }
                     })
                     .catch(() => {
-                        window.location.href = "error.html";
+                        window.location.href = "/error";
                     });
 
                 fetch(`https://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=${encodeURIComponent(artist.name)}&api_key=ef46db5e1694b83d5b6af6a580cc047b&format=json`)
@@ -189,7 +189,7 @@
                         }
                     })
                     .catch(() => {
-                        window.location.href = "error.html";
+                        window.location.href = "/error";
                     });
 
                 fetch(`https://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&artist=${encodeURIComponent(artist.name)}&api_key=ef46db5e1694b83d5b6af6a580cc047b&format=json`)
@@ -204,7 +204,7 @@
                         }
                     })
                     .catch(() => {
-                        window.location.href = "error.html";
+                        window.location.href = "/error";
                     });
             } else {
                 document.getElementById('artist-info').innerText = "No artist information found.";
