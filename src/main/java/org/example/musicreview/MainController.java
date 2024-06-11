@@ -32,5 +32,7 @@ public class MainController {
     }
 
     @GetMapping("/error")
-    public String error() { return "error"; }
+    public String error() {
+        return "error";
+    }
 }
